@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Budgeter</string>
+    <string name="next">Suivant</string>
+    <string name="skip">Passer</string>
+    <string name="back">Retour</string>
+    <string name="go">C\'est parti !</string>
+    <string name="first_intro_text">Gérez votre budget comme un pro</string>
+    <string name="second_intro_text">Soyez informé des réductions et promotions sur le marché</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
+import com.group10.budgeter.intro.FirstIntroActivity
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -20,7 +21,7 @@ class SplashScreenActivity: AppCompatActivity() {
     fun navigateToRightActivity(){
         //Go to another activity after
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, FirstIntroActivity::class.java))
         }, 5000)
     }
 
