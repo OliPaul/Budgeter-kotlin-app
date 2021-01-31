@@ -4,7 +4,6 @@
 			android:width="3dp"
 			android:color="@color/customColorBlue"
 	/>
-	<solid android:color="transparent"/>
 	<corners android:radius="5dp" />
 	<padding
 			android:left="10dp"
