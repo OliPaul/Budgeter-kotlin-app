@@ -9,7 +9,7 @@ class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first_intro);
+        setContentView(R.layout.acticity_new_spend);
     }
 
     override fun onClick(v: View?) {
