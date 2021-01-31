@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Budgeter</string>
+    <string name="title_new_spend">Nouvelle dépense</string>
+    <string name="new_spend_textfield_title_hint_text">Intitulé</string>
+    <string name="new_spend_textfield_amount_hint_text">Montant</string>
+    <string name="new_spend_textfield_category_hint_text">Catégorie</string>
+    <string name="new_spend_textfield_comment_hint_text">Commentaires</string>
+    <string name="new_spend_btn_save_text">Enregistrer</string>
+    <string name="new_spend_separator_text">ou</string>
+    <string name="new_spend_scan_ticket_text">Scanner un reçu</string>
+    <string name="title_spend_list">Ma liste de dépenses</string>
     <string name="next">Suivant</string>
     <string name="skip">Passer</string>
     <string name="back">Retour</string>
