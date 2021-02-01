@@ -2,4 +2,4 @@ package com.group10.budgeter.spend
 
 import java.util.*
 
-data class Spend(val spendTitle: String, val spendAmount: Double, val spendCategory: String, val spendComment: String, val spendDate: Date, val userID: String);
+data class Spend(var spendTitle: String, var spendAmount: Double, var spendCategory: String, var spendComment: String, var spendDate: Date, var userID: String);
