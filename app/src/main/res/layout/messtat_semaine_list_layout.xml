@@ -14,7 +14,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-                android:id="@+id/spend_title_text"
+                android:id="@+id/messtatssemaine_title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
@@ -23,8 +23,8 @@
 
 
         <TextView
-                android:id="@+id/spend_date_text"
-                android:text="10/02/2021 19:54"
+                android:id="@+id/messtatssemaine_date_text"
+                android:text="10/02/2021"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <TextView
-            android:id="@+id/spend_amount_text"
+            android:id="@+id/messtatssemaine_amount_text"
             android:text="450,50€"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
