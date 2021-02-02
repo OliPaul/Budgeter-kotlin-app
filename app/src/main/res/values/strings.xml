@@ -4,7 +4,7 @@
     <string name="new_spend_textfield_title_hint_text">Intitulé</string>
     <string name="new_spend_textfield_amount_hint_text">Montant</string>
     <string name="new_spend_textfield_category_hint_text">Catégorie</string>
-    <string name="new_spend_textfield_comment_hint_text">Commentaires</string>
+    <string name="new_spend_textfield_comment_hint_text">Commentaires (Facultatif)</string>
     <string name="new_spend_btn_save_text">Enregistrer</string>
     <string name="new_spend_separator_text">ou</string>
     <string name="new_spend_scan_ticket_text">Scanner un reçu</string>
