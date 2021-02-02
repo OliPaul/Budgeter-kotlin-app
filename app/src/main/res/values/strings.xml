@@ -16,18 +16,8 @@
     <string name="first_intro_text">Gérez votre budget comme un pro</string>
     <string name="second_intro_text">Soyez informé des réductions et promotions sur le marché</string>
     <string name="Mes_stats_txt">Mes stats</string>
-    <string name="bilan_annuel_txt">2000,00€ </string>
-    <string name="bilan_janvier_txt">Janvier</string>
-    <string name="bilan_Fevrier_txt">Fevrier</string>
-    <string name="bilan_Mars_txt">Mars</string>
-    <string name="bilan_Avril_txt">Avril</string>
-    <string name="bilan_Mai_txt">Mai</string>
-    <string name="bilan_juin_txt">Juin</string>
-    <string name="bilan_juillet_txt">Juillet</string>
-    <string name="bilan_aout_txt">Aout</string>
-    <string name="bilan_septembre_txt">Septembre</string>
-    <string name="bilan_octobre_txt">Octobre</string>
-    <string name="bilan_novembre_txt">Novembre</string>
-    <string name="bilan_decembre_txt">Decembre</string>
+    <string name="bilan_txt">2000</string>
+    <string name="title_stat_list">Mes stats</string>
+    <string name="bilan_annuel">1500,50€</string>
 
 </resources>
