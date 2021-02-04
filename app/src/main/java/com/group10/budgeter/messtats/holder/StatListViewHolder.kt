@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.group10.budgeter.R
 import com.group10.budgeter.messtats.MesStats
 import com.group10.budgeter.messtats.onStatClicked
-import com.group10.budgeter.spend.OnSpendClicked
-import com.group10.budgeter.spend.Spend
 
 class StatListViewHolder(inflater: LayoutInflater, parent: ViewGroup):
     RecyclerView.ViewHolder(inflater.inflate(R.layout.messtat_list_layout,parent,false)),
@@ -23,8 +21,8 @@ class StatListViewHolder(inflater: LayoutInflater, parent: ViewGroup):
 
 
     init {
-        statmoisText = itemView.findViewById(R.id.spend_title_text);
-        statAmountText = itemView.findViewById(R.id.spend_amount_text);
+        statmoisText = itemView.findViewById(R.id.stat_mois_text);
+        statAmountText = itemView.findViewById(R.id.stat_amount_text);
     }
 
     fun bind(stat: MesStats, onStatClicked: onStatClicked){

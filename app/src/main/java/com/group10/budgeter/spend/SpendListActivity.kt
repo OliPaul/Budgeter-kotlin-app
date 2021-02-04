@@ -19,22 +19,6 @@ import kotlin.collections.HashMap
 
 class SpendListActivity: AppCompatActivity(), OnSpendClicked{
 
-    private val spendList: List<Spend> = listOf(
-        Spend("Sandwich - Avocat",  10.00,"Alimentation", "", Date(), "user1"),
-        Spend("Sandwich - Tomate",  12.50,"Alimentation", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-        Spend("Costume",  60.00,"Vêtements", "", Date(), "user1"),
-
-    );
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spend_list);
@@ -55,6 +39,7 @@ class SpendListActivity: AppCompatActivity(), OnSpendClicked{
                     for (spend in value){
                         spendList.add(Gson().fromJson(spend.value.toString(), Spend::class.java));
                     }
+
                     //Generate list
                     recyclerView?.apply {
                         layoutManager = LinearLayoutManager(this@SpendListActivity);

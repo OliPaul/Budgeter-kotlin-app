@@ -32,7 +32,7 @@ class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
                 spend_amount.text.toString().toDouble(),
                 spend_category.text.toString(),
                 spend_comment?.text.toString(),
-                Date(),
+                Date().toString(),
                 "user01"
             );
 

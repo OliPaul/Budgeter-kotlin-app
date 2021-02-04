@@ -19,7 +19,6 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.messtat_semaine_list_layout,pa
     private var semaineTitleText: TextView? = null;
     private var statsDateText: TextView? = null;
     private var statsAmountText: TextView? = null;
-    private var messtatsemaine: MesStatsSemaine? = null;
 
     init {
         semaineTitleText = itemView.findViewById(R.id.messtatssemaine_title_text);
@@ -28,12 +27,10 @@ RecyclerView.ViewHolder(inflater.inflate(R.layout.messtat_semaine_list_layout,pa
     }
 
     fun bind(statsemaine: MesStatsSemaine){
-        // this.statsemaine = statsemaine;
 
         semaineTitleText?.text = statsemaine.semaineTitle;
         statsDateText?.text = statsemaine.statsDate.toString();
         statsAmountText?.text = statsemaine.statsAmount.toString() + "€";
-
 
     }
 
