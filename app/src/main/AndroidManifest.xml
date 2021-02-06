@@ -9,7 +9,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".accueil.HomeScreenActivity"></activity>
+        <activity android:name=".accueil.MesStatsActivity"></activity>
+        <activity android:name=".accueil.SettingsActivity" />
+        <activity android:name=".accueil.NewExpanditureActivity" />
+        <activity android:name=".accueil.HomeScreenActivity" />
         <activity
                 android:name=".splashscreen.SplashScreenActivity"
                 android:theme="@style/AppTheme.NoActionBar">
