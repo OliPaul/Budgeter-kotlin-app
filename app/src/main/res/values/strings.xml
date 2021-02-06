@@ -15,4 +15,12 @@
     <string name="go">C\'est parti !</string>
     <string name="first_intro_text">Gérez votre budget comme un pro</string>
     <string name="second_intro_text">Soyez informé des réductions et promotions sur le marché</string>
+    <string name="expenditure">Nouvelle dépense</string>
+    <string name="list">Ma liste de dépenses</string>
+    <string name="stats">Mes Stats</string>
+    <string name="parameters">Paramètres</string>
+    <string name="quotation">"J'aime toujours garder le budget aussi petit que possible juste pour avoir le plus de liberté"</string>
+    <tring name="author">Sofia Coppola</tring>
+    
+    
 </resources>
