@@ -1,5 +1,6 @@
 package com.group10.budgeter.spend
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -27,10 +28,15 @@ class SpendListActivity: AppCompatActivity(), OnSpendClicked{
 
     fun getSpendData(){
         val database = Firebase.database;
+
+        //Get user pseudo
+        val sharedPreferences = getSharedPreferences("Budgeter", Context.MODE_PRIVATE);
+        val userID = sharedPreferences.getString("userID", null);
+
         val myRef = database.getReference("spend");
         var spendList: MutableList<Spend> = mutableListOf();
 
-        myRef.orderByChild("userID").equalTo("user02").addValueEventListener(object : ValueEventListener {
+        myRef.orderByChild("userID").equalTo(userID).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.

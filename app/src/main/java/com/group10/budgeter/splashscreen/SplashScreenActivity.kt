@@ -1,5 +1,6 @@
 package com.group10.budgeter.splashscreen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -25,7 +26,13 @@ class SplashScreenActivity: AppCompatActivity() {
     fun navigateToRightActivity(){
         //Go to another activity after
         Handler().postDelayed({
-            startActivity(Intent(this, HomeScreenActivity::class.java))
+            val sharedPreferences = getSharedPreferences("Budgeter", Context.MODE_PRIVATE);
+            val appAlreadyOpened = sharedPreferences.getBoolean("appAlreadyOpened", false);
+            if(!appAlreadyOpened) {
+                startActivity(Intent(this, FirstIntroActivity::class.java))
+            }else{
+                startActivity(Intent(this, HomeScreenActivity::class.java))
+            }
         }, 5000)
     }
 
