@@ -10,24 +10,23 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.group10.budgeter.R
+import com.group10.budgeter.accueil.HomeScreenActivity
 import kotlinx.android.synthetic.main.acticity_new_spend.*
 import java.util.*
 import kotlin.collections.HashMap
 
 class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
-    companion object{
-        val RESULT_KEY = "resultkey"
 
-        /*fun navigateTo(context: Context, value: Int){
-            val intent = Intent(context, NewSpendActivity::class.java)
-            intent.putExtra("")
-            context.startActivity(intent)
-        }*/
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acticity_new_spend);
         btnSave.setOnClickListener(this);
+        backToHome?.setOnClickListener(this)
+    }
+
+    fun goToHome(){
+        startActivity(Intent(this, HomeScreenActivity::class.java))
+
     }
 
     override fun onClick(v: View?) {
@@ -66,7 +65,11 @@ class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
         }
 
 
-
+    when (v?.id) {
+        R.id.backToHome -> {
+            goToHome();
+        }
+    }
 
     }
 

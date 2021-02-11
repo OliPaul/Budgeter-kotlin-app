@@ -9,6 +9,7 @@ import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
 import com.group10.budgeter.intro.SecondIntroActivity
 import com.group10.budgeter.messtats.StatListActivity
+//import com.group10.budgeter.messtats.StatListActivity
 import com.group10.budgeter.spend.NewSpendActivity
 import com.group10.budgeter.spend.SpendListActivity
 import kotlinx.android.synthetic.main.activity_first_intro.*
@@ -38,11 +39,11 @@ class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this@HomeScreenActivity, SpendListActivity::class.java)
             startActivity(intent)
         }
-        val button3 = findViewById<Button>(R.id.statsButton)
+        /*val button3 = findViewById<Button>(R.id.statsButton)
         button3.setOnClickListener{
             val intent = Intent(this@HomeScreenActivity,  StatListActivity::class.java)
             startActivity(intent)
-        }
+        }*/
         val button4 = findViewById<Button>(R.id.settingsButton)
         button4.setOnClickListener{
             val intent = Intent(this, NewSpendActivity::class.java)

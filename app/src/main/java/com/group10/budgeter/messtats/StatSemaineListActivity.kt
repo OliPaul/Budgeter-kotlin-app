@@ -5,8 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import com.group10.budgeter.R
 import com.group10.budgeter.messtats.adapter.StatSemaineListAdapter
+import com.group10.budgeter.spend.Spend
 import kotlinx.android.synthetic.main.activity_messtats_semaine_list.*
 import kotlinx.android.synthetic.main.activity_spend_list.*
 import java.util.*
