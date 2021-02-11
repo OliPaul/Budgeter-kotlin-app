@@ -22,7 +22,11 @@
     <string name="quotation">"J'aime toujours garder le budget aussi petit que possible juste pour avoir le plus de liberté"</string>
     <string name="author">Sofia Coppola</string>
     <string name="title_stat_list">Mes stats</string>
+<<<<<<< HEAD
     <string name="bilan_annuel">150 €</string>
     
+=======
+    <string name="bilan_annuel">1500€</string>
+>>>>>>> 2fca7912a334d93c3a9aa73b5a6cd7dec799ffa1
     
 </resources>
