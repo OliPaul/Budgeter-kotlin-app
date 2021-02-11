@@ -8,8 +8,7 @@ import com.group10.budgeter.messtats.holder.StatListViewHolder
 import com.group10.budgeter.messtats.onStatClicked
 
 class StatListAdapter(
-    private val stat: List<MesStats>,
-    private val onStatClicked: onStatClicked
+    private val stat: List<MesStats>
 ) : RecyclerView.Adapter<StatListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatListViewHolder {
@@ -18,7 +17,7 @@ class StatListAdapter(
     }
     override fun onBindViewHolder(holder: StatListViewHolder, position: Int) {
         val stat = stat[position];
-        holder.bind(stat, onStatClicked);
+        holder.bind(stat);
     }
 
 

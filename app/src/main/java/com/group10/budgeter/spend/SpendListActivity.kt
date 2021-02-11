@@ -1,5 +1,6 @@
 package com.group10.budgeter.spend
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,32 +21,33 @@ import kotlinx.android.synthetic.main.activity_spend_list.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class SpendListActivity: AppCompatActivity(), OnSpendClicked,  View.OnClickListener {
+class SpendListActivity: AppCompatActivity(), OnSpendClicked, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spend_list);
-        backToHome?.setOnClickListener(this);
+        backToHome.setOnClickListener(this);
         getSpendData();
     }
 
-    fun goToHome() {
-        startActivity(Intent(this, HomeScreenActivity::class.java))
-    }
-
-    fun getSpendData() {
+    fun getSpendData(){
         val database = Firebase.database;
+
+        //Get user pseudo
+        val sharedPreferences = getSharedPreferences("Budgeter", Context.MODE_PRIVATE);
+        val userID = sharedPreferences.getString("userID", null);
+
         val myRef = database.getReference("spend");
         var spendList: MutableList<Spend> = mutableListOf();
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        myRef.orderByChild("userID").equalTo(userID).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue<HashMap<String, Any>>()
                 if (value != null) {
-                    for (spend in value) {
-                        spendList.add(Gson().fromJson(spend.value.toString(), Spend::class.java));
+                    for (spend in value){
+                        spendList.add(Gson().fromJson(Gson().toJson(spend.value), Spend::class.java));
                     }
 
                     //Generate list
@@ -68,10 +70,6 @@ class SpendListActivity: AppCompatActivity(), OnSpendClicked,  View.OnClickListe
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.backToHome -> {
-                goToHome();
-            }
-        }
+        startActivity(Intent(this, HomeScreenActivity::class.java))
     }
 }
