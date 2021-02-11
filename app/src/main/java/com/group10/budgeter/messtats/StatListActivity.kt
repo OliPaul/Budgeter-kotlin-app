@@ -2,43 +2,51 @@ package com.group10.budgeter.messtats
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
 import com.group10.budgeter.messtats.adapter.StatListAdapter
+import com.group10.budgeter.spend.Spend
+import com.group10.budgeter.spend.adapter.SpendListAdapter
 import kotlinx.android.synthetic.main.activity_messtat_list.*
 import kotlinx.android.synthetic.main.activity_spend_list.*
+import java.util.*
+import kotlin.collections.HashMap
 
-class StatListActivity: AppCompatActivity(), View.OnClickListener, onStatClicked{
+class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicked {
 
-    private val statList: List<MesStats> = listOf(
-        MesStats("Janvier", 60.00),
-        MesStats("Fevrier", 10.00),
-        MesStats("Mars", 20.00),
-        MesStats("Avril", 60.00),
-        MesStats("Mai", 40.00),
-        MesStats("Juin", 60.00),
-        MesStats("Juillet", 70.00),
-        MesStats("Aout", 90.00),
-        MesStats("Septembre", 10.00),
-        MesStats("Octobre", 90.00),
-        MesStats("Novembre", 60.00),
-        MesStats("Décembre", 60.00)
-    );
+    private var january: MesStats = MesStats("Janvier", 0.00);
+    private var february: MesStats = MesStats("Fevrier", 0.00);
+    private var march: MesStats = MesStats("Mars", 0.00);
+    private var april: MesStats = MesStats("Avril", 0.00);
+    private var may: MesStats = MesStats("Mai", 0.00);
+    private var june: MesStats = MesStats("Juin", 0.00);
+    private var july: MesStats = MesStats("Juillet", 0.00);
+    private var august: MesStats = MesStats("Aout", 0.00);
+    private var september: MesStats = MesStats("Septembre", 0.00);
+    private var october: MesStats = MesStats("Octobre", 0.00);
+    private var november: MesStats = MesStats("Novembre", 0.00);
+    private var december: MesStats = MesStats("Décembre", 0.00);
+    private var sum: Double = 0.0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messtat_list);
-
-        recyclerViewStat?.apply {
-            layoutManager = LinearLayoutManager(this@StatListActivity);
-            adapter = StatListAdapter(statList, this@StatListActivity);
-        }
+        getSpendData();
     }
 
-    fun getSpendData(){
+    fun getSpendData() {
         val database = Firebase.database;
         val myRef = database.getReference("spend");
         var spendList: MutableList<Spend> = mutableListOf();
@@ -49,13 +57,18 @@ class StatListActivity: AppCompatActivity(), View.OnClickListener, onStatClicked
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue<HashMap<String, Any>>()
                 if (value != null) {
-                    for (spend in value){
+                    for (spend in value) {
                         spendList.add(Gson().fromJson(spend.value.toString(), Spend::class.java));
                     }
+
+                    //Processing monthly report
+                    val statList = monthlyReport(spendList);
+                    //Update total
+                    bilanannuel.setText(sum.toString() + " €");
                     //Generate list
-                    recyclerView?.apply {
-                        layoutManager = LinearLayoutManager(this@SpendListActivity);
-                        adapter = SpendListAdapter(spendList, this@SpendListActivity);
+                    recyclerViewStat?.apply {
+                        layoutManager = LinearLayoutManager(this@StatListActivity);
+                        adapter = StatListAdapter(statList, this@StatListActivity);
                     }
                 }
             }
@@ -67,67 +80,97 @@ class StatListActivity: AppCompatActivity(), View.OnClickListener, onStatClicked
         });
     }
 
-fun bilanMensuelle(spendList) {
-    var statList: MutableList<MesStats> = mutableListOf();
-    for (MesStats. statList){
+    fun monthlyReport(spendList: MutableList<Spend>): List<MesStats> {
+        val statList: MutableList<MesStats> = mutableListOf();
         for (spend in spendList) {
-            var sum: Double = 0.0;
 
-            if (spend.spendDate >= "01/01/2021" && spend.spendDate <= "31/01/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-                //stat_amount_text
-            }
-            if (spend.spendDate >= "01/02/2021" && spend.spendDate <= "28/02/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/03/2021" && spend.spendDate <= "31/03/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/04/2021" && spend.spendDate <= "30/04/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/05/2021" && spend.spendDate <= "31/05/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/06/2021" && spend.spendDate <= "30/06/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/07/2021" && spend.spendDate <= "31/07/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/08/2021" && spend.spendDate <= "31/08/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/09/2021" && spend.spendDate <= "30/09/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/10/2021" && spend.spendDate <= "31/10/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
-            }
-            if (spend.spendDate >= "01/11/2021" && spend.spendDate <= "30/11/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
+            sum += spend.spendAmount;
 
-            }if (spend.spendDate >= "01/12/2021" && spend.spendDate <= "31/12/2021") {
-                sum += spend.spendAmount;
-                MesStats.statAmount = sum;
+            if (Date(spend.spendDate).month == 0) {
+                january.statAmount += spend.spendAmount
             }
+            if (Date(spend.spendDate).month == 1) {
+                february.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 2) {
+                march.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 3) {
+                april.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 4) {
+                may.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 5) {
+                june.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 6) {
+                july.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 7) {
+                august.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 8) {
+                september.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 9) {
+                october.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 10) {
+                november.statAmount += spend.spendAmount
+            }
+            if (Date(spend.spendDate).month == 11) {
+                december.statAmount += spend.spendAmount
+            }
+
         }
+
+        var listMesStats : MutableList<MesStats> = mutableListOf();
+        if(Date().month >= 0){
+            listMesStats.add(january)
+        }
+        if(Date().month >= 1){
+            listMesStats.add(february)
+        }
+        if(Date().month >= 2){
+            listMesStats.add(march)
+        }
+        if(Date().month >= 3){
+            listMesStats.add(april)
+        }
+        if(Date().month >= 4){
+            listMesStats.add(may)
+        }
+        if(Date().month >= 5){
+            listMesStats.add(june)
+        }
+        if(Date().month >= 6){
+            listMesStats.add(july)
+        }
+        if(Date().month >= 7){
+            listMesStats.add(august)
+        }
+        if(Date().month >= 8){
+            listMesStats.add(september)
+        }
+        if(Date().month >= 9){
+            listMesStats.add(october)
+        }
+        if(Date().month >= 10){
+            listMesStats.add(november)
+        }
+        if(Date().month >= 11){
+            listMesStats.add(december)
+        }
+
+
+        statList.addAll(listMesStats);
+        return statList;
     }
-}
-   override fun onStatClicked(mesStats: MesStats?) {
-       startActivity(Intent(this, StatSemaineListActivity::class.java));
-   }
+
+    override fun onStatClicked(mesStats: MesStats?) {
+        startActivity(Intent(this, StatSemaineListActivity::class.java));
+    }
 
     override fun onClick(v: View?) {
         startActivity(Intent(this, MainActivity::class.java));
