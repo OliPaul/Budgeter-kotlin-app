@@ -30,14 +30,14 @@ class SpendListActivity: AppCompatActivity(), OnSpendClicked{
         val myRef = database.getReference("spend");
         var spendList: MutableList<Spend> = mutableListOf();
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        myRef.orderByChild("userID").equalTo("user02").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue<HashMap<String, Any>>()
                 if (value != null) {
                     for (spend in value){
-                        spendList.add(Gson().fromJson(spend.value.toString(), Spend::class.java));
+                        spendList.add(Gson().fromJson(Gson().toJson(spend.value), Spend::class.java));
                     }
 
                     //Generate list
