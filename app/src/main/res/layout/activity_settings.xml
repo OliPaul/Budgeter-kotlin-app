@@ -41,7 +41,7 @@
           android:layout_marginTop="5pt"/>
   
   <EditText
-          android:id="@+id/parameters_title"
+          android:id="@+id/monthly_cap_amount"
           android:layout_width="130pt"
           android:layout_height="wrap_content"
           app:layout_constraintTop_toBottomOf="@id/title"
