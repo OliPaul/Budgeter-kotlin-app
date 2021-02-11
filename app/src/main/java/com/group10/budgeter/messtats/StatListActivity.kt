@@ -79,53 +79,48 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
             }
         });
     }
-
-    fun monthlyReport(spendList: MutableList<Spend>): List<MesStats> {
-        val statList: MutableList<MesStats> = mutableListOf();
-        for (spend in spendList) {
-
-            sum += spend.spendAmount;
-
-            if (Date(spend.spendDate).month == 0) {
-                january.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 1) {
-                february.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 2) {
-                march.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 3) {
-                april.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 4) {
-                may.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 5) {
-                june.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 6) {
-                july.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 7) {
-                august.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 8) {
-                september.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 9) {
-                october.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 10) {
-                november.statAmount += spend.spendAmount
-            }
-            if (Date(spend.spendDate).month == 11) {
-                december.statAmount += spend.spendAmount
-            }
-
+    fun calculMonthlySpend(spend){
+        if (Date(spend.spendDate).month == 0) {
+            january.statAmount += spend.spendAmount
+            // if(Date(spend.spendDate).day <= 0)
+        }
+        if (Date(spend.spendDate).month == 1) {
+            february.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 2) {
+            march.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 3) {
+            april.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 4) {
+            may.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 5) {
+            june.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 6) {
+            july.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 7) {
+            august.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 8) {
+            september.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 9) {
+            october.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 10) {
+            november.statAmount += spend.spendAmount
+        }
+        if (Date(spend.spendDate).month == 11) {
+            december.statAmount += spend.spendAmount
         }
 
-        var listMesStats : MutableList<MesStats> = mutableListOf();
+    }
+
+    var displayMonth(listMesStats){
         if(Date().month >= 0){
             listMesStats.add(january)
         }
@@ -162,8 +157,21 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
         if(Date().month >= 11){
             listMesStats.add(december)
         }
+    }
 
 
+
+    fun monthlyReport(spendList: MutableList<Spend>): List<MesStats> {
+        val statList: MutableList<MesStats> = mutableListOf();
+        for (spend in spendList) {
+
+            sum += spend.spendAmount;
+            calculMonthlySpend(spend);
+
+        }
+
+        var listMesStats : MutableList<MesStats> = mutableListOf();
+        displayMonth(listMesStats);
         statList.addAll(listMesStats);
         return statList;
     }
