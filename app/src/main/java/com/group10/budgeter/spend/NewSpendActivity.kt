@@ -1,5 +1,6 @@
 package com.group10.budgeter.spend
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -33,18 +34,23 @@ class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         val database = Firebase.database;
+        //Get user pseudo
+        val sharedPreferences = getSharedPreferences("Budgeter", Context.MODE_PRIVATE);
+        val userID = sharedPreferences.getString("userID", null);
 
         //Check fields value
         if(spend_title?.text.toString() != "" && spend_amount?.text.toString() != "" && spend_category?.text.toString() != ""){
 
-            val spend = Spend(
-                spend_title.text.toString(),
-                spend_amount.text.toString().toDouble(),
-                spend_category.text.toString(),
-                spend_comment?.text.toString(),
-                Date().toString(),
-                "user01"
-            );
+            val spend = userID?.let {
+                Spend(
+                    spend_title.text.toString(),
+                    spend_amount.text.toString().toDouble(),
+                    spend_category.text.toString(),
+                    spend_comment?.text.toString(),
+                    Date().toString(),
+                    it
+                )
+            };
 
 
             val myRef = database.getReference("spend");
