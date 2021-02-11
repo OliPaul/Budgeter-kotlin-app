@@ -48,9 +48,8 @@ class NewSpendActivity: AppCompatActivity(), View.OnClickListener {
 
 
             val myRef = database.getReference("spend");
-            val spendAsMap = Gson().toJson(spend);
 
-            myRef.push().setValue(spendAsMap)
+            myRef.push().setValue(spend)
                 .addOnSuccessListener {
                     Toast.makeText(applicationContext,"Dépense enregistrée avec succès.",Toast.LENGTH_SHORT).show()
                     spend_title.setText("");
