@@ -1,5 +1,6 @@
 package com.group10.budgeter.messtats
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
+import com.group10.budgeter.accueil.HomeScreenActivity
 import com.group10.budgeter.messtats.adapter.StatListAdapter
 import com.group10.budgeter.spend.Spend
 import com.group10.budgeter.spend.adapter.SpendListAdapter
@@ -23,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_spend_list.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicked {
+class StatListActivity : AppCompatActivity(), View.OnClickListener {
 
     private var january: MesStats = MesStats("Janvier", 0.00);
     private var february: MesStats = MesStats("Fevrier", 0.00);
@@ -43,22 +45,29 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messtat_list);
+        backToHomestat.setOnClickListener(this);
         getSpendData();
     }
 
     fun getSpendData() {
         val database = Firebase.database;
+
+        //Get user pseudo
+        val sharedPreferences = getSharedPreferences("Budgeter", Context.MODE_PRIVATE);
+        val userID = sharedPreferences.getString("userID", null);
+
+
         val myRef = database.getReference("spend");
         var spendList: MutableList<Spend> = mutableListOf();
 
-        myRef.addValueEventListener(object : ValueEventListener {
+        myRef.orderByChild("userID").equalTo(userID).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val value = dataSnapshot.getValue<HashMap<String, Any>>()
                 if (value != null) {
                     for (spend in value) {
-                        spendList.add(Gson().fromJson(spend.value.toString(), Spend::class.java));
+                        spendList.add(Gson().fromJson(Gson().toJson(spend.value), Spend::class.java));
                     }
 
                     //Processing monthly report
@@ -68,7 +77,7 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
                     //Generate list
                     recyclerViewStat?.apply {
                         layoutManager = LinearLayoutManager(this@StatListActivity);
-                        adapter = StatListAdapter(statList, this@StatListActivity);
+                        adapter = StatListAdapter(statList);
                     }
                 }
             }
@@ -79,7 +88,7 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
             }
         });
     }
-    fun calculMonthlySpend(spend){
+    fun calculMonthlySpend(spend: Spend){
         if (Date(spend.spendDate).month == 0) {
             january.statAmount += spend.spendAmount
             // if(Date(spend.spendDate).day <= 0)
@@ -120,7 +129,7 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
 
     }
 
-    var displayMonth(listMesStats){
+    fun displayMonth(listMesStats: MutableList<MesStats>): MutableList<MesStats>{
         if(Date().month >= 0){
             listMesStats.add(january)
         }
@@ -157,6 +166,8 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
         if(Date().month >= 11){
             listMesStats.add(december)
         }
+
+        return listMesStats;
     }
 
 
@@ -170,18 +181,12 @@ class StatListActivity : AppCompatActivity(), View.OnClickListener, onStatClicke
 
         }
 
-        var listMesStats : MutableList<MesStats> = mutableListOf();
-        displayMonth(listMesStats);
-        statList.addAll(listMesStats);
-        return statList;
-    }
 
-    override fun onStatClicked(mesStats: MesStats?) {
-        startActivity(Intent(this, StatSemaineListActivity::class.java));
+        return displayMonth(statList);
     }
 
     override fun onClick(v: View?) {
-        startActivity(Intent(this, MainActivity::class.java));
+        startActivity(Intent(this, HomeScreenActivity::class.java));
     }
 }
 

@@ -25,7 +25,7 @@ class StatListViewHolder(inflater: LayoutInflater, parent: ViewGroup):
         statAmountText = itemView.findViewById(R.id.stat_amount_text);
     }
 
-    fun bind(stat: MesStats, onStatClicked: onStatClicked){
+    fun bind(stat: MesStats){
         this.stat = stat;
         this.onStatClicked = onStatClicked
 

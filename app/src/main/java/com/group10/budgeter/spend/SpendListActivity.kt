@@ -1,8 +1,10 @@
 package com.group10.budgeter.spend
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -13,16 +15,18 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.group10.budgeter.R
+import com.group10.budgeter.accueil.HomeScreenActivity
 import com.group10.budgeter.spend.adapter.SpendListAdapter
 import kotlinx.android.synthetic.main.activity_spend_list.*
 import java.util.*
 import kotlin.collections.HashMap
 
-class SpendListActivity: AppCompatActivity(), OnSpendClicked{
+class SpendListActivity: AppCompatActivity(), OnSpendClicked, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spend_list);
+        backToHome.setOnClickListener(this);
         getSpendData();
     }
 
@@ -63,5 +67,9 @@ class SpendListActivity: AppCompatActivity(), OnSpendClicked{
 
     override fun onSpendClicked(spend: Spend?) {
         //Nothing to do
+    }
+
+    override fun onClick(v: View?) {
+        startActivity(Intent(this, HomeScreenActivity::class.java))
     }
 }
