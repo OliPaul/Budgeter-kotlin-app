@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
+import com.group10.budgeter.accueil.HomeScreenActivity
 import com.group10.budgeter.intro.FirstIntroActivity
 import com.group10.budgeter.messtats.StatListActivity
 import com.group10.budgeter.spend.NewSpendActivity
@@ -24,7 +25,7 @@ class SplashScreenActivity: AppCompatActivity() {
     fun navigateToRightActivity(){
         //Go to another activity after
         Handler().postDelayed({
-            startActivity(Intent(this, NewSpendActivity::class.java))
+            startActivity(Intent(this, HomeScreenActivity::class.java))
         }, 5000)
     }
 

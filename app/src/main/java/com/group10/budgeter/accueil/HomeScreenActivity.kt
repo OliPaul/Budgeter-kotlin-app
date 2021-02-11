@@ -9,6 +9,7 @@ import com.group10.budgeter.R
 import com.group10.budgeter.messtats.StatListActivity
 import com.group10.budgeter.spend.NewSpendActivity
 import com.group10.budgeter.spend.SpendListActivity
+import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
     companion object
@@ -20,25 +21,25 @@ class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_home_screen)
 
         val button1 = findViewById<Button>(R.id.newSpentButton)
-        button1.setOnClickListener{
+        newSpentButton.setOnClickListener{
             val intent = Intent(this, NewSpendActivity::class.java)
-            //HomeScreenActivity(intent)
+            startActivity(intent)
         }
         val button2 = findViewById<Button>(R.id.spentListButton)
         button2.setOnClickListener{
             val intent = Intent(this, SpendListActivity::class.java)
-            //HomeScreenActivity(intent)
+            startActivity(intent)
         }
         val button3 = findViewById<Button>(R.id.statsButton)
         button3.setOnClickListener{
             val intent = Intent(this,  StatListActivity::class.java)
-            //HomeScreenActivity(intent)
+            startActivity(intent)
         }
-        val button4 = findViewById<Button>(R.id.settingsButton)
+        /*val button4 = findViewById<Button>(R.id.settingsButton)
         button4.setOnClickListener{
             val intent = Intent(this, NewSpendActivity::class.java)
-            //HomeScreenActivity(intent)
-        }
+            startActivity(intent)
+        }*/
     }
 
     override fun onClick(v: View?) {
