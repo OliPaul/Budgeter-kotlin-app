@@ -21,18 +21,18 @@ class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_home_screen)
 
         val button1 = findViewById<Button>(R.id.newSpentButton)
-        newSpentButton.setOnClickListener{
-            val intent = Intent(this, NewSpendActivity::class.java)
+        button1.setOnClickListener{
+            val intent = Intent(this@HomeScreenActivity, NewSpendActivity::class.java)
             startActivity(intent)
         }
         val button2 = findViewById<Button>(R.id.spentListButton)
         button2.setOnClickListener{
-            val intent = Intent(this, SpendListActivity::class.java)
+            val intent = Intent(this@HomeScreenActivity, SpendListActivity::class.java)
             startActivity(intent)
         }
         val button3 = findViewById<Button>(R.id.statsButton)
         button3.setOnClickListener{
-            val intent = Intent(this,  StatListActivity::class.java)
+            val intent = Intent(this@HomeScreenActivity,  StatListActivity::class.java)
             startActivity(intent)
         }
         /*val button4 = findViewById<Button>(R.id.settingsButton)
