@@ -23,5 +23,8 @@
     <string name="author">Sofia Coppola</string>
     <string name="title_stat_list">Mes stats</string>
     <string name="bilan_annuel">1500€</string>
-    
+	<string name="settings">Paramètres</string>
+    <string name="settings_textfield_title_hint_text">"saisissez votre plafond mensuel "</string>
+    <string name="version_text">Version 1.0</string>
+
 </resources>

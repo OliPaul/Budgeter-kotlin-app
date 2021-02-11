@@ -9,6 +9,7 @@ import com.group10.budgeter.MainActivity
 import com.group10.budgeter.R
 import com.group10.budgeter.intro.SecondIntroActivity
 import com.group10.budgeter.messtats.StatListActivity
+import com.group10.budgeter.settings.SettingsActivity
 //import com.group10.budgeter.messtats.StatListActivity
 import com.group10.budgeter.spend.NewSpendActivity
 import com.group10.budgeter.spend.SpendListActivity
@@ -63,6 +64,9 @@ class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
     fun goToStatsActivity(){
         startActivity((Intent(this@HomeScreenActivity, StatListActivity::class.java)))
     }
+    fun goToSettingsActivity(){
+        startActivity(Intent(this@HomeScreenActivity, SettingsActivity::class.java))
+    }
 
     override fun onClick(v: View?) {
         when (v?.id){
@@ -75,6 +79,10 @@ class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
             R.id.statsButton -> {
                 goToStatsActivity()
             }
+            R.id.settingsButton -> {
+                goToSettingsActivity()
+            }
+
         }
     }
 }
