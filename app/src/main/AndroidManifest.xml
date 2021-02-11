@@ -28,6 +28,11 @@
         <activity android:name=".intro.SecondIntroActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".accueil.HomeScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            
+        </activity>
+        
         <activity android:name=".spend.NewSpendActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

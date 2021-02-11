@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background_color"
         tools:context=".messtats.StatListActivity">
-
+    
     <ImageButton
             android:id="@+id/backToHomestat"
             android:layout_width="40dp"
@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="4pt"/>
-
+    
     <TextView
             android:id="@+id/titlestat"
             android:layout_width="wrap_content"
@@ -31,8 +31,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="5pt"/>
-
-
+    
+    
     <TextView
             android:id="@+id/bilanannuel"
             android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="5pt"/>
-
+    
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewStat"
             android:layout_width="0dp"
@@ -56,6 +56,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bilanannuel"/>
+            app:layout_constraintTop_toBottomOf="@id/titlestat"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

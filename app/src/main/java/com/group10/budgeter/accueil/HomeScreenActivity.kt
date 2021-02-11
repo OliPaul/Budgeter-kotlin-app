@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import com.group10.budgeter.R
+import com.group10.budgeter.messtats.StatListActivity
 import com.group10.budgeter.spend.NewSpendActivity
-import kotlinx.android.synthetic.main.activity_home_screen.*
+import com.group10.budgeter.spend.SpendListActivity
 
-class HomeScreenActivity : AppCompatActivity(), View.OnClickListener {
+class HomeScreenActivity() : AppCompatActivity(), View.OnClickListener {
     companion object
     {
         val REQUEST_CODE = 32
@@ -16,14 +18,38 @@ class HomeScreenActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
-        button_1.setOnClickListener(this)
+
+        val button1 = findViewById<Button>(R.id.newSpentButton)
+        button1.setOnClickListener{
+            val intent = Intent(this, NewSpendActivity::class.java)
+            //HomeScreenActivity(intent)
+        }
+        val button2 = findViewById<Button>(R.id.spentListButton)
+        button2.setOnClickListener{
+            val intent = Intent(this, SpendListActivity::class.java)
+            //HomeScreenActivity(intent)
+        }
+        val button3 = findViewById<Button>(R.id.statsButton)
+        button3.setOnClickListener{
+            val intent = Intent(this,  StatListActivity::class.java)
+            //HomeScreenActivity(intent)
+        }
+        val button4 = findViewById<Button>(R.id.settingsButton)
+        button4.setOnClickListener{
+            val intent = Intent(this, NewSpendActivity::class.java)
+            //HomeScreenActivity(intent)
+        }
     }
 
     override fun onClick(v: View?) {
-        NewSpendActivity.navigateTo(this, 15)
+        TODO("Not yet implemented")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onClick(v: View?) {
+        NewSpendActivity.navigateTo(this, 15)
+    }*/
+
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode)
         {
@@ -33,5 +59,5 @@ class HomeScreenActivity : AppCompatActivity(), View.OnClickListener {
                 button_1?.text = value
             }
         }
-    }
+    }*/
 }
